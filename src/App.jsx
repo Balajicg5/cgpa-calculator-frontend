@@ -705,7 +705,7 @@ const departmentDatabase = {
 const PDFReport = ({ department, semesters, calculateSemesterGPA, calculateCGPA }) => (
   <Document>
     <Page size="A4" style={pdfStyles.page}>
-      <Text style={pdfStyles.title}>Academic Performance Report</Text>
+      <Text style={pdfStyles.title}>CGPA REPORT</Text>
       <Text style={{ fontSize: 16, marginBottom: 20, textAlign: 'center' }}>
         Department: {departmentDatabase[department].name}
       </Text>
@@ -993,7 +993,7 @@ const SemesterGPACalculator = () => {
                                 onClick={toggleCourseMode}
                                 className="flex-1 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-lg transition duration-200"
                             >
-                                {isCustomCourse ? 'Auto-fill Mode' : 'Add Custom Course'}
+                                {isCustomCourse ? 'Auto-fill Mode' : 'Add Electives'}
                             </button>
                         </div>
 
@@ -1015,108 +1015,111 @@ const SemesterGPACalculator = () => {
               </button>
             </div>
 
-            {/* Current Semester Courses */}
-            {currentSemester.courses.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-4">Current Semester Courses</h2>
-                <div className="space-y-3">
-                  {currentSemester.courses.map((course, index) => (
-                    <div key={index} className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
-                      <div className="grid grid-cols-4 md:grid-cols-5 gap-4 flex-1">
-                        <span className="md:col-span-1 font-medium">{course.code}</span>
-                        <span className="md:col-span-2 font-medium">{course.name}</span>
-                        <span className="md:col-span-1">{course.credits} credits</span>
-                        <span className="md:col-span-1">{course.grade}/10</span>
-                      </div>
-                      <button
-                        onClick={() => removeCourse(index)}
-                        className="ml-4 p-2 text-red-500 hover:bg-red-100 rounded-full transition duration-200"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            
 
-            {/* Saved Semesters */}
-            {semesters.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-4">Saved Semesters</h2>
-                <div className="space-y-6">
-                  {semesters.map((semester, index) => (
-                    <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                      <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-semibold">Semester {semester.number}</h3>
-                        <div className="flex items-center gap-4">
-                          <span className="text-blue-600 font-semibold">
-                            GPA: {calculateSemesterGPA(semester.courses)}/10
-                          </span>
-                          <button
-                            onClick={() => removeSemester(index)}
-                            className="p-2 text-red-500 hover:bg-red-100 rounded-full transition duration-200"
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        {semester.courses.map((course, courseIndex) => (
-                          <div key={courseIndex} className="grid grid-cols-4 md:grid-cols-5 gap-4 py-2 border-b border-gray-200 last:border-0">
-                            <span className="md:col-span-1 font-medium">{course.code}</span>
-                            <span className="md:col-span-2 font-medium">{course.name}</span>
-                            <span className="md:col-span-1">{course.credits} credits</span>
-                            <span className="md:col-span-1">{course.grade}/10</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+{/* Current Semester Courses */}
+{currentSemester.courses.length > 0 && (
+  <div className="mt-8">
+    <h2 className="text-xl font-semibold mb-4">Current Semester Courses</h2>
+    <div className="space-y-3">
+      {currentSemester.courses.map((course, index) => (
+        <div key={index} className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 flex-1">
+            <span className="md:col-span-1 font-medium">{course.code}</span>
+            <span className="md:col-span-2 font-medium">{course.name}</span>
+            <span className="md:col-span-1">{course.credits} credits</span>
+            <span className="md:col-span-1">{course.grade}/10</span>
+          </div>
+          <button
+            onClick={() => removeCourse(index)}
+            className="ml-4 p-2 text-red-500 hover:bg-red-100 rounded-full transition duration-200"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
-                {/* CGPA Display */}
-                <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-                  <h2 className="text-2xl font-bold text-center text-blue-800">
-                    Cumulative GPA: {calculateCGPA()}/10
-                  </h2>
-                  <div className="text-sm text-gray-600 mt-2 text-center">
-                    Total Semesters: {semesters.length}
-                  </div>
-                </div>
-                
-          
-                {/* PDF Download Button */}
-                <div className="mt-8">
-                  <PDFDownloadLink
-                    document={
-                      <PDFReport 
-                        department={selectedDepartment}
-                        semesters={semesters}
-                        calculateSemesterGPA={calculateSemesterGPA}
-                        calculateCGPA={calculateCGPA}
-                      />
-                    }
-                    fileName={`${selectedDepartment}_academic_report.pdf`}
-                  >
-                    {({ blob, url, loading, error }) => (
-                      <button
-                        className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 ${
-                          loading ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                        disabled={loading}
-                      >
-                        {loading ? 'Generating PDF...' : 'Download Academic Report (PDF)'}
-                      </button>
-                    )}
-                  </PDFDownloadLink>
-                </div>
+
+
+{/* Saved Semesters */}
+{semesters.length > 0 && (
+  <div className="mt-8">
+    <h2 className="text-xl font-semibold mb-4">Saved Semesters</h2>
+    <div className="space-y-6">
+      {semesters.map((semester, index) => (
+        <div key={index} className="bg-gray-50 p-6 rounded-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold">Semester {semester.number}</h3>
+            <div className="flex items-center gap-4">
+              <span className="text-blue-600 font-semibold">
+                GPA: {calculateSemesterGPA(semester.courses)}/10
+              </span>
+              <button
+                onClick={() => removeSemester(index)}
+                className="p-2 text-red-500 hover:bg-red-100 rounded-full transition duration-200"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            {semester.courses.map((course, courseIndex) => (
+              <div key={courseIndex} className="grid grid-cols-1 md:grid-cols-5 gap-4 py-2 border-b border-gray-200 last:border-0">
+                <span className="md:col-span-1 font-medium">{course.code}</span>
+                <span className="md:col-span-2 font-medium">{course.name}</span>
+                <span className="md:col-span-1">{course.credits} credits</span>
+                <span className="md:col-span-1">{course.grade}/10</span>
               </div>
-            )}
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* CGPA Display */}
+    <div className="mt-8 p-6 bg-blue-50 rounded-lg">
+      <h2 className="text-2xl font-bold text-center text-blue-800">
+        Cumulative GPA: {calculateCGPA()}/10
+      </h2>
+      <div className="text-sm text-gray-600 mt-2 text-center">
+        Total Semesters: {semesters.length}
+      </div>
+    </div>
+
+    {/* PDF Download Button */}
+    <div className="mt-8">
+      <PDFDownloadLink
+        document={
+          <PDFReport 
+            department={selectedDepartment}
+            semesters={semesters}
+            calculateSemesterGPA={calculateSemesterGPA}
+            calculateCGPA={calculateCGPA}
+          />
+        }
+        fileName={`${selectedDepartment}_academic_report.pdf`}
+      >
+        {({ blob, url, loading, error }) => (
+          <button
+            className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 ${
+              loading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={loading}
+          >
+            {loading ? 'Generating PDF...' : 'Download Academic Report (PDF)'}
+          </button>
+        )}
+      </PDFDownloadLink>
+    </div>
+  </div>
+)}
           </div>
         )}
       </div>
