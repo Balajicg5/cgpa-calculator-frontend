@@ -464,7 +464,7 @@ const departmentDatabase = {
     }
    },
    "EIE":{
-    name:"Electrical and Instrumental Engineering",
+    name:"Electronics and Instrumentation Engineering",
     courses:{
       
        // "22NMC1Z0": { "name": "Induction Programme", "credits": 0 },
