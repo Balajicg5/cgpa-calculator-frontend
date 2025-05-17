@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'; // 🆕 Import motion
 import { createSemester, updateSemester } from '../services/api';
 
-function SemesterGPACalculator({ semester, onSave }) {
+function SemGPACalculator({ semester, onSave }) {
   const [formData, setFormData] = useState({
     number: 1,
     courses: [{ code: '', name: '', credits: 3, grade: 4.0 }]
@@ -245,4 +245,4 @@ function SemesterGPACalculator({ semester, onSave }) {
   );
 }
 
-export default SemesterGPACalculator;
+export default SemGPACalculator;

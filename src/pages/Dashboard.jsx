@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { getSemesters, getCGPA, deleteSemester } from '../services/api'
-import SemesterGPACalculator from '../components/SemesterGPACalulator'
+import SemesterGPACalculator from '../components/SemGPACalulator'
 
 function Dashboard() {
   const { user, logout } = useAuth()
