@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL ='https://cgpa-calculator-backend-production.up.railway.app/api'
+const API_URL ='https://localhost:5000'
 
 // Create axios instance
 const api = axios.create({
