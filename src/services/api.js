@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL ='https://localhost:5000'
+const API_URL ='https://cgpa-calculator-backend-qjnt.onrender.com/api'
 
 // Create axios instance
 const api = axios.create({
